@@ -72,8 +72,8 @@ namespace coresystem.Repositorys
                 using (var conn = GetConn())
                 {
                     var query = @"INSERT INTO Member
-                    (FirstName, LastName, FatherName, MotherName, GrandFatherName, Address, Number, DateOfBirth, Gender, CreatedAt, RecStatus)
-                    VALUES (@FirstName, @LastName, @FatherName, @MotherName, @GrandFatherName, @Address, @Number, @DateOfBirth, @Gender, @CreatedAt, @RecStatus)";
+                    (FullName, FatherName, MotherName, GrandFatherName, Address, Number, DateOfBirth, Gender, CreatedAt, RecStatus)
+                    VALUES (@FullName, @FatherName, @MotherName, @GrandFatherName, @Address, @Number, @DateOfBirth, @Gender, @CreatedAt, @RecStatus)";
                     await conn.ExecuteAsync(query, member);
                 }
             }
@@ -90,7 +90,7 @@ namespace coresystem.Repositorys
             {
                 using (var conn = GetConn())
                 {
-                    var query = @"UPDATE Member SET FirstName=@FirstName, LastName=@LastName, FatherName=@FatherName,
+                    var query = @"UPDATE Member SET FullName=@FullName, FatherName=@FatherName,
                                 MotherName=@MotherName, GrandFatherName=@GrandFatherName, Address=@Address, 
                                 Number=@Number, DateOfBirth=@DateOfBirth, Gender=@Gender WHERE Id=@Id";
                     await conn.ExecuteAsync(query, member);

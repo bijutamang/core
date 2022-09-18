@@ -1,121 +1,64 @@
-﻿@model SharePurchase
+﻿@using coresystem.ViewModels;
+@model IEnumerable<coresystem.ViewModels.SharePurchaseVm>;
 
 @{
-    ViewData["Title"] = "Share Purchase";
+    ViewData["Title"] = "Index";
 }
-
 <style>
-    .share {
-      width: 70%;
-      border: 1px solid black;
-      margin-top: 2rem;
+
+    th, td {
+        white-space: nowrap;
     }
-    .mb {
-      margin-top: 2rem;
-      margin-bottom: 2rem;
+
+    .table-scrollable {
+        margin-top: 1rem;
     }
-    .information {
-      float: right;
-      border: 1px solid black;
-      margin-top: 5rem;
-      width: 30%;
-      padding: 1rem;
-      display: none;
+
+    .add {
+        margin-top: 4rem;
     }
-    .title {
-      color: black;
-      font-weight: 600;
+
+    .table-scrollable::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
     }
-  </style>
-<div class="container" id="memberInfo" onkeyup="multiplyBy(this)">
-    <div class="row information">
-        <div class="col-md-12">
-            <h4>
-                <span class="strong">Biju Tamang</span>
-            </h4>
-        </div>
-        <table>
+
+    .table-scrollable::-webkit-scrollbar {
+        background-color: #F5F5F5;
+    }
+
+    .table-scrollable::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #d3dae0;
+    }
+</style>
+<p class="add">
+    <a asp-action="Purchase" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i> Share Purchase</a>
+</p>
+<div class="table-scrollable" style="height: 300px; width:100%">
+    <table cellspacing="0" id="table-basic" class="table table-bordered table-striped" style="width:100%">
+        <thead>
             <tr>
-                <td class="title">Name</td>
-                <td>Biju Tamang</td>
+                <th>Member Name</th>
+                <th>ShareNo</th>
+                <th>Share Amount</th>
+                <th>Remarks</th>
+                <th>Purchase Date</th>
             </tr>
-
+        </thead>
+        @foreach (var share in Model)
+        {
             <tr>
-                <td class="title">Parent</td>
-                <td>Father Tamang</td>
+                <td>@share.FullName</td>
+                <td>@share.ShareNo</td>
+                <td>@share.ShareAmount</td>
+                <td>@share.Remarks</td>
+                <td>@share.PurchaseDate</td>
             </tr>
-
-            <tr>
-                <td class="title">Permanent Address</td>
-                <td>Birtamod</td>
-            </tr>
-
-            <tr>
-                <td class="title">Share QTY | Amount</td>
-                <td>1 | 100</td>
-            </tr>
-    </table>
-    </div>
-
-<h1 class="mb mt-4">Share Purchase</h1>
-    <form class="row share mt-2 g-3" asp-action="Purchase">
-        <div class="col-md-9">
-            <label class="form-label">Member Name</label>
-                <select asp-for="MemberId" autofocus class="form-control mt-1" asp-items="@(new SelectList(ViewBag.Member,"Id", "FirstName", "LastName"))">
-                    <a asp-action="" id="infoShow">
-                        <option id="infoShow">Select Member</option>
-                    </a>
-                </select>
-            <span asp-validation-for="MemberId" class="text-danger"></span>
-        </div>
-
-        <div class="col-md-4">
-            <label asp-for="ShareNo" class="form-label"></label>
-            <input type="text" id="ShareNo" class="form-control" name="ShareNo" />
-            <span asp-validation-for="ShareNo"></span>
-        </div>
-        <div class="col-md-4">
-            <label  class="form-label">Rate</label>
-             <input type="text" name="Rate" class="form-control" id="Rate" value="100" readonly />
-        </div>
-        <div class="col-md-4">
-            <label asp-for="ShareAmount" class="form-label"></label>
-            <input type="text" id="ShareAmount" class="form-control" name="ShareAmount" />
-              <span asp-validation-for="ShareAmount"></span>
-        </div>
-        <div class="col-md-4">
-            <label asp-for="Remarks" class="form-label"></label>
-                <input type="text" class="form-control" name="Remarks" />
-            <span asp-validation-for="Remarks"></span>
-            </div>        
-        <div class="col-md-4">
-            <label asp-for="PurchaseDate" class="form-label"></label>
-                <input placeholder="YYYY/MM/DD" class="form-control" type="datetime-local" name="PurchaseDate"  value="" />
-                <span asp-validation-for="PurchaseDate"></span>
-        </div>
-
-        <div class="col-12 mt-4 mb-3">
-            <button type="submit" class="btn btn-primary">Purchase</button>
-        </div>
-    </form>
-</div>
-<script>
-
-    function multiplyBy() {
-      let ShareAmt = document.getElementById("ShareAmount");
-      let ShareNo = (Quantity = document.getElementById("ShareNo").value);
-      let Rate = document.getElementById("Rate").value;
-
-      ShareAmt.value = ShareNo * Rate;
-    }
-    // show member information
-    let btn = document.getElementById("infoShow");
-    let div = document.getElementById("memberInfo");
-    btn.addEventListener("click", () => {
-        if (div.style.display == "none") {
-            div.style.display = "block";
-        } else {
-            div.style.display = "none";
         }
-    });
-</script>
+        <tbody>
+        </tbody>
+    </table>
+</div>

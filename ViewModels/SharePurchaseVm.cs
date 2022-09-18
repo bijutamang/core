@@ -4,6 +4,6 @@ namespace coresystem.ViewModels
 {
     public class SharePurchaseVm:SharePurchase
     {
-        public string  MyProperty { get; set; }
+        public string  FullName { get; set; }
     }
 }

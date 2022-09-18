@@ -13,9 +13,6 @@ namespace coresystem.Models
         [DisplayName("Full Name")]
 		public string? FullName { get; set; }
         [Required]
-        [DisplayName("Last Name")]
-        public string? LastName { get; set; }
-        [Required]
         [DisplayName("Father Name")]
         public string? FatherName { get; set; }
         [Required]
