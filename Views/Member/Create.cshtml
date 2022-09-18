@@ -1,0 +1,68 @@
+﻿@model Member
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h2 class="mt-4">Member Registration</h2>
+
+<div class="container mt-4">
+    <form class="row g-3" asp-action="Create">
+        <div class="col-md-4">
+            <label asp-for="FirstName" class="form-label"></label>
+            <input type="text" name="FirstName" class="form-control" required/>
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="LastName" class="form-label"></label>
+            <input type="text" name="LastName" class="form-control" required />
+            <span asp-validation-for="LastName"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="FatherName" class="form-label"></label>
+            <input type="text" name="FatherName" class="form-control" required />
+            <span asp-validation-for="FatherName"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="MotherName" class="form-label"></label>
+            <input type="text" name="MotherName" class="form-control" required />
+            <span asp-validation-for="MotherName"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="GrandFatherName" class="form-label"></label>
+            <input type="text" name="GrandFatherName" class="form-control" required />
+            <span asp-validation-for="GrandFatherName"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Address" class="form-label"></label>
+            <input type="text" name="Address" class="form-control" required />
+            <span asp-validation-for="Address"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Number" class="form-label"></label>
+            <input type="text" name="Number" class="form-control" required />
+            <span asp-validation-for="Number"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="DateOfBirth" class="form-label"></label>
+            <input placeholder="YYYY/MM/DD" type="datetime-local" name="DateOfBirth" class="form-control" value="" />
+            <span asp-validation-for="DateOfBirth"></span>
+        </div>
+
+        <div class="col-md-6">
+
+            <label asp-for="Gender" class="form-label"></label>
+            <select name="Gender" >
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                <option value="3">Other</option>
+                <span asp-validation-for="Gender"></span>
+            </select>
+        </div>
+        <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-success">Add Member</button> |
+            <a asp-action="Index" class="btn btn-secondary">Back </a>
+        </div>
+    </form>
+</div>

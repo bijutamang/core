@@ -1,0 +1,68 @@
+﻿@model Member
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h2 class="mt-4">Delete Member</h2>
+
+<div class="container mt-4">
+    <form class="row g-3" asp-action="Delete">
+        <div class="col-md-4">
+            <label asp-for="FirstName" class="form-label"></label>
+            <input type="text" asp-for="FirstName" class="form-control" disabled />
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" type="text" class="form-control" disabled />
+            <span asp-validation-for="LastName"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="FatherName" class="form-label"></label>
+            <input type="text" asp-for="FatherName" class="form-control" disabled />
+            <span asp-validation-for="FatherName"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="MotherName" class="form-label"></label>
+            <input type="text" asp-for="MotherName" class="form-control" disabled />
+            <span asp-validation-for="MotherName"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="GrandFatherName" class="form-label"></label>
+            <input type="text" asp-for="GrandFatherName" class="form-control" disabled />
+            <span asp-validation-for="GrandFatherName"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Address" class="form-label"></label>
+            <input type="text" asp-for="Address" class="form-control" disabled />
+            <span asp-validation-for="Address"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Number" class="form-label"></label>
+            <input type="text" asp-for="Number" class="form-control" disabled />
+            <span asp-validation-for="Number"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="DateOfBirth" class="form-label"></label>
+            <input placeholder="YYYY/MM/DD" type="datetime-local" disabled asp-for="DateOfBirth" class="form-control" />
+            <span asp-validation-for="DateOfBirth"></span>
+        </div>
+
+        <div class="col-md-6">
+
+            <label asp-for="Gender" class="form-label"></label>
+            <select disabled asp-for="Gender">
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                <option value="3">Other</option>
+                <span asp-validation-for="Gender"></span>
+            </select>
+        </div>
+        <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-danger">Delete Member</button> |
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+        </div>
+    </form>
+</div>
