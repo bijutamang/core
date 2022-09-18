@@ -1,1 +1,121 @@
-﻿<h1>share Purchase</h1>
+﻿@model SharePurchase
+
+@{
+    ViewData["Title"] = "Share Purchase";
+}
+
+<style>
+    .share {
+      width: 70%;
+      border: 1px solid black;
+      margin-top: 2rem;
+    }
+    .mb {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    .information {
+      float: right;
+      border: 1px solid black;
+      margin-top: 5rem;
+      width: 30%;
+      padding: 1rem;
+      display: none;
+    }
+    .title {
+      color: black;
+      font-weight: 600;
+    }
+  </style>
+<div class="container" id="memberInfo" onkeyup="multiplyBy(this)">
+    <div class="row information">
+        <div class="col-md-12">
+            <h4>
+                <span class="strong">Biju Tamang</span>
+            </h4>
+        </div>
+        <table>
+            <tr>
+                <td class="title">Name</td>
+                <td>Biju Tamang</td>
+            </tr>
+
+            <tr>
+                <td class="title">Parent</td>
+                <td>Father Tamang</td>
+            </tr>
+
+            <tr>
+                <td class="title">Permanent Address</td>
+                <td>Birtamod</td>
+            </tr>
+
+            <tr>
+                <td class="title">Share QTY | Amount</td>
+                <td>1 | 100</td>
+            </tr>
+    </table>
+    </div>
+
+<h1 class="mb mt-4">Share Purchase</h1>
+    <form class="row share mt-2 g-3" asp-action="Purchase">
+        <div class="col-md-9">
+            <label class="form-label">Member Name</label>
+                <select asp-for="MemberId" autofocus class="form-control mt-1" asp-items="@(new SelectList(ViewBag.Member,"Id", "FirstName", "LastName"))">
+                    <a asp-action="" id="infoShow">
+                        <option id="infoShow">Select Member</option>
+                    </a>
+                </select>
+            <span asp-validation-for="MemberId" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="ShareNo" class="form-label"></label>
+            <input type="text" id="ShareNo" class="form-control" name="ShareNo" />
+            <span asp-validation-for="ShareNo"></span>
+        </div>
+        <div class="col-md-4">
+            <label  class="form-label">Rate</label>
+             <input type="text" name="Rate" class="form-control" id="Rate" value="100" readonly />
+        </div>
+        <div class="col-md-4">
+            <label asp-for="ShareAmount" class="form-label"></label>
+            <input type="text" id="ShareAmount" class="form-control" name="ShareAmount" />
+              <span asp-validation-for="ShareAmount"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Remarks" class="form-label"></label>
+                <input type="text" class="form-control" name="Remarks" />
+            <span asp-validation-for="Remarks"></span>
+            </div>        
+        <div class="col-md-4">
+            <label asp-for="PurchaseDate" class="form-label"></label>
+                <input placeholder="YYYY/MM/DD" class="form-control" type="datetime-local" name="PurchaseDate"  value="" />
+                <span asp-validation-for="PurchaseDate"></span>
+        </div>
+
+        <div class="col-12 mt-4 mb-3">
+            <button type="submit" class="btn btn-primary">Purchase</button>
+        </div>
+    </form>
+</div>
+<script>
+
+    function multiplyBy() {
+      let ShareAmt = document.getElementById("ShareAmount");
+      let ShareNo = (Quantity = document.getElementById("ShareNo").value);
+      let Rate = document.getElementById("Rate").value;
+
+      ShareAmt.value = ShareNo * Rate;
+    }
+    // show member information
+    let btn = document.getElementById("infoShow");
+    let div = document.getElementById("memberInfo");
+    btn.addEventListener("click", () => {
+        if (div.style.display == "none") {
+            div.style.display = "block";
+        } else {
+            div.style.display = "none";
+        }
+    });
+</script>
