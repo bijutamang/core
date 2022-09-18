@@ -40,8 +40,7 @@
     <table cellspacing="0" id="table-basic" class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>               
+                <th>Member Name</th>        
                 <th>Father Name</th>              
                 <th>Mother Name</th>      
                 <th>Address</th>
@@ -52,8 +51,7 @@
         </thead>
         @foreach(var member in Model){
             <tr>
-                <td>@member.FirstName</td>
-                <td>@member.LastName</td>
+                <td>@member.FullName</td>
                 <td>@member.FatherName</td>
                 <td>@member.MotherName</td>
                 <td>@member.Address</td>
