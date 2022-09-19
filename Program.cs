@@ -15,6 +15,9 @@ builder.Services.AddTransient<IMemberRepository, MemberRepository>();
 builder.Services.AddTransient<IMemberService, MemberService>();
 builder.Services.AddTransient<ISharePurchaseRepository, SharePurchaseRepository>();
 builder.Services.AddTransient<ISharePurchaseService, SharePurchaseService>();
+builder.Services.AddTransient<IShareReturnRepository, ShareReturnRepository>();
+builder.Services.AddTransient<IShareReturnService, ShareReturnService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
