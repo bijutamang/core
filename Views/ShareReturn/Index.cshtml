@@ -1,1 +1,64 @@
-﻿<h1>share return</h1>
+﻿@using coresystem.ViewModels;
+@model IEnumerable<coresystem.ViewModels.ShareReturnVm>;
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+
+    th, td {
+        white-space: nowrap;
+    }
+
+    .table-scrollable {
+        margin-top: 1rem;
+    }
+
+    .add {
+        margin-top: 4rem;
+    }
+
+    .table-scrollable::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+
+    .table-scrollable::-webkit-scrollbar {
+        background-color: #F5F5F5;
+    }
+
+    .table-scrollable::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #d3dae0;
+    }
+</style>
+<p class="add">
+    <a asp-action="Return" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i> Share Return</a>
+</p>
+<div class="table-scrollable" style="height: 300px; width:100%">
+    <table cellspacing="0" id="table-basic" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Member Name</th>
+                <th>ShareNo</th>
+                <th>Amount</th>
+                <th>Remarks</th>
+                <th>Purchase Date</th>
+            </tr>
+        </thead>
+        @foreach (var share in Model)
+        {
+            <tr>
+                <td>@share.FullName</td>
+                <td>@share.ShareNo</td>
+                <td>@share.Amount</td>
+                <td>@share.Remarks</td>
+                <td>@share.ReturnDate</td>
+            </tr>
+        }
+        <tbody>
+        </tbody>
+    </table>
+</div>

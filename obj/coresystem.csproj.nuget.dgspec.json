@@ -62,6 +62,10 @@
               "target": "Package",
               "version": "[6.0.9, )"
             },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
             "Octopus.Client": {
               "target": "Package",
               "version": "[14.1.226, )"
