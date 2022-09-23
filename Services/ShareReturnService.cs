@@ -18,6 +18,12 @@ namespace coresystem.Services
 
         public async Task ShareReturnAsync(ShareReturn shareReturn)
         {
+            // validate if share can be returned
+            var shareBalance = await _shareReturnRepository.GetShareAmountByMemberIdAsync(shareReturn.MemberId);
+            if(shareBalance > shareReturn.Amount)
+            {
+                throw new Exception("Cannot return more than share balance");
+            }
             await _shareReturnRepository.SaveAsync(shareReturn);
         }
     }

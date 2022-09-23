@@ -78,7 +78,7 @@
         </div>
         <div class="col-md-4">
             <label asp-for="ShareAmount" class="form-label"></label>
-            <input type="text" id="ShareAmount" class="form-control" name="ShareAmount" />
+            <input type="text" id="ShareAmount" class="form-control" name="ShareAmount" readonly/>
               <span asp-validation-for="ShareAmount"></span>
         </div>
         <div class="col-md-4">
@@ -93,7 +93,7 @@
             <span asp-validation-for="PurchaseDate"></span>
         </div>
         <div class="col-12 mt-4 mb-3">
-            <button type="submit" class="btn btn-primary">Purchase</button>
+            <button type="submit" class="btn btn-success">Purchase</button>
         </div>
     </form>
 </div>
