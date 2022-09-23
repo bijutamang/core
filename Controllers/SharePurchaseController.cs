@@ -1,6 +1,8 @@
-﻿using coresystem.Models;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using coresystem.Models;
 using coresystem.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Metrics;
 
 namespace coresystem.Controllers
 {
@@ -8,10 +10,15 @@ namespace coresystem.Controllers
     {
         private readonly IMemberService _memberService;
         private readonly ISharePurchaseService _sharePurchaseService;
-        public SharePurchaseController(IMemberService memberService, ISharePurchaseService sharePurchaseService)
+        private readonly INotyfService _notify;
+
+        public SharePurchaseController(IMemberService memberService,
+            ISharePurchaseService sharePurchaseService,
+            INotyfService notify)
         {
             _memberService = memberService;
             _sharePurchaseService = sharePurchaseService;
+            _notify = notify;
         }
 
         public async Task<IActionResult>  Index()
@@ -20,7 +27,7 @@ namespace coresystem.Controllers
             return View(sharePurchase);
         }
 
-        public async Task<IActionResult> PurchaseAsync()
+        public async Task<IActionResult> Purchase()
         {
 
             ViewBag.Member = await _memberService.GetAllMembersAsync();
@@ -32,17 +39,21 @@ namespace coresystem.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    await _sharePurchaseService.PurchaseShareAsync(sharePurchase);
+                    _notify.Error("Something wrong");
+                    return RedirectToAction("Purchase");
+                    
                 }
+                await _sharePurchaseService.PurchaseShareAsync(sharePurchase);
+                _notify.Success("Share purchase for member no " + sharePurchase.MemberId + " of share no. " + sharePurchase.ShareNo + " is successful.");
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {
 
                 throw;
             }
-             return RedirectToAction("Index");
         }
     }
 }

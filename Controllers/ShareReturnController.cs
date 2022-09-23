@@ -1,5 +1,7 @@
-﻿using coresystem.Models;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using coresystem.Models;
 using coresystem.Services.Interfaces;
+using coresystem.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coresystem.Controllers
@@ -8,10 +10,17 @@ namespace coresystem.Controllers
     {
         private readonly IShareReturnService _shareReturnService;
         private readonly IMemberService _memberService;
-        public ShareReturnController(IShareReturnService shareReturnService, IMemberService memberService)
+        private readonly INotyfService _notify;
+
+        public ShareReturnController(
+            IShareReturnService shareReturnService,
+            IMemberService memberService,
+            INotyfService notify
+            )
         {
             _shareReturnService = shareReturnService;
             _memberService = memberService;
+            _notify = notify;
         }
         public async Task<IActionResult> Index()
         {
@@ -28,20 +37,23 @@ namespace coresystem.Controllers
         [HttpPost]
         public async Task<IActionResult> ReturnAsync(ShareReturn shareReturn)
         {
+            ViewBag.Members = await _memberService.GetAllMembersAsync();
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    await _shareReturnService.ShareReturnAsync(shareReturn);
-                    return RedirectToAction("Index");
+                    _notify.Warning("Model is not valid");
+                    return View(shareReturn);
                 }
-
+                await _shareReturnService.ShareReturnAsync(shareReturn);
+                _notify.Success("Share return for member no " + shareReturn.MemberId + " of share no. " + shareReturn.ShareNo + " is successful");
+                return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                _notify.Error(ex.Message);
+                return View(shareReturn);
             }
-            return View(shareReturn);
         }
     }
 }

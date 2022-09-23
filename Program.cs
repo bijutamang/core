@@ -1,3 +1,5 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using coresystem;
 using coresystem.Repositorys;
 using coresystem.Repositorys.Interfaces;
@@ -18,6 +20,9 @@ builder.Services.AddTransient<ISharePurchaseService, SharePurchaseService>();
 builder.Services.AddTransient<IShareReturnRepository, ShareReturnRepository>();
 builder.Services.AddTransient<IShareReturnService, ShareReturnService>();
 
+// configure toast notification
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +35,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseNotyf();
 
 app.UseRouting();
 

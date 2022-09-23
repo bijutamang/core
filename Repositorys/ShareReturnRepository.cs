@@ -54,5 +54,25 @@ namespace coresystem.Repositorys
                 throw;
             }
         }
+
+        public async Task<decimal> GetShareAmountByMemberIdAsync(int memberId)
+        {
+            try
+            {
+                using (var conn = GetConn())
+                {
+                    var query = @"
+                    select
+                    (select sum(ShareAmount) from SharePurchase where MemberId = @memberId) - (select sum(Amount) from ShareReturn where MemberId = @memberId)
+                    ";
+                    return await conn.ExecuteScalarAsync<decimal>(query, new { memberId });
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

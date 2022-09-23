@@ -275,3 +275,6 @@ E:\Online Banking Transactions System\coresystem\bin\Debug\net6.0\runtimes\unix\
 E:\Online Banking Transactions System\coresystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 E:\Online Banking Transactions System\coresystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\Online Banking Transactions System\coresystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+E:\Online Banking Transactions System\coresystem\bin\Debug\net6.0\AspNetCoreHero.ToastNotification.Views.dll
+E:\Online Banking Transactions System\coresystem\bin\Debug\net6.0\AspNetCoreHero.ToastNotification.dll
+E:\Online Banking Transactions System\coresystem\obj\Debug\net6.0\coresystem.MvcApplicationPartsAssemblyInfo.cs

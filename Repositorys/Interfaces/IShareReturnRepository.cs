@@ -7,5 +7,6 @@ namespace coresystem.Repositorys.Interfaces
     {
         Task<IEnumerable<ShareReturnVm>> GetAllShareReturnAsync();
         Task SaveAsync(ShareReturn shareReturn);
+        Task<decimal> GetShareAmountByMemberIdAsync(int memberId);
     }
 }

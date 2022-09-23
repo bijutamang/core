@@ -36,6 +36,11 @@
 <p class="add">
     <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i> Add Member</a>
 </p>
+
+<form class="form-inline my-2 my-lg-0" method="get" >
+    <input class="form-control mr-sm-2" type="search" name="SearchMember" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 <div class="table-scrollable" style="height: 300px; width:100%">
     <table cellspacing="0" id="table-basic" class="table table-bordered table-striped" style="width:100%">
         <thead>

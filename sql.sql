@@ -4,8 +4,7 @@ USE CoreSystem
 
 CREATE TABLE Member (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	FirstName VARCHAR(25),
-	LastName VARCHAR(25),
+	FullName VARCHAR(25),
 	Address VARCHAR(250),
 	FatherName VARCHAR(25),
 	MotherName VARCHAR(25),
